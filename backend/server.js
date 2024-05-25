@@ -5,7 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
+const userRoutes = require('./routes/userRouter');
 const connectDB = async () => {
   try {
     await mongoose.connect(
@@ -24,6 +24,9 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
 
+
+// API AUTH
+app.use('/users', userRoutes);
 app.listen(process.env.PORT, () => {
   console.log(
     `Server dang chay tai PORT : http://localhost:${process.env.PORT}/`
